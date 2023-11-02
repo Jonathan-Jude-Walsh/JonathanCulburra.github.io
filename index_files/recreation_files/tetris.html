@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!-- I got this from to Geekprank.com -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	Check out some more cool things at Geekprank.com
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tetris</title>
+	<link rel="canonical" href="https://geekprank.com/tetris/">
+	<style>
+		body, html      { font-family: Helvetica, sans-serif; background-color: transparent;cursor: default !important;	}
+		#tetris   { margin: 0 auto; padding: 0; color: #444; }
+		#stats    { display: none; vertical-align: top; }
+		#canvas   { display: inline-block; vertical-align: top; border: 2px solid #333; background-color: #ffffff;}
+		#menu     { display: inline-block; vertical-align: top; position: relative; }
+		#menu p   { margin: 0.5em 0; text-align: center; }
+		#start	  { Color: #F00;}
+		#menu p a {	text-decoration: none;		color: #000;		font-weight: bold;	}
+		#focusLost {
+		position: fixed;
+		z-index: 1000;
+		top: 0;
+		display: none;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: rgba(0,0,0,0.8);
+		font-size: 19px;
+		font-weight: bold;
+		color: #FFF;
+		text-align: center;
+		padding-top: 22%;
+		}
+		#upcoming { display: block; margin: 0 auto; background-color: #E0E0E0; }
+		#score    { color: #444; font-weight: bold; vertical-align: middle; }
+		#rows     { color: #444; font-weight: bold; vertical-align: middle; }
+		#stats    { position: absolute; bottom: 0em; right: 1em; }
+		@media screen and (min-width:   0px) and (min-height:   0px)  { #tetris { font-size: 0.75em; width: 250px; } #menu { width: 100px; height: 200px; } #upcoming { width:  50px; height:  50px; } #canvas { width: 100px; height: 200px; } } /* 10px chunks */
+		@media screen and (min-width: 400px) and (min-height: 400px)  { #tetris { font-size: 1.00em; width: 350px; } #menu { width: 150px; height: 300px; } #upcoming { width:  75px; height:  75px; } #canvas { width: 150px; height: 300px; } } /* 15px chunks */
+		@media screen and (min-width: 500px) and (min-height: 500px)  { #tetris { font-size: 1.25em; width: 450px; } #menu { width: 200px; height: 400px; } #upcoming { width: 100px; height: 100px; } #canvas { width: 200px; height: 400px; } } /* 20px chunks */
+		@media screen and (min-width: 600px) and (min-height: 600px)  { #tetris { font-size: 1.50em; width: 550px; } #menu { width: 250px; height: 500px; } #upcoming { width: 125px; height: 125px; } #canvas { width: 250px; height: 500px; } } /* 25px chunks */
+		@media screen and (min-width: 700px) and (min-height: 700px)  { #tetris { font-size: 1.75em; width: 650px; } #menu { width: 300px; height: 600px; } #upcoming { width: 150px; height: 150px; } #canvas { width: 300px; height: 600px; } } /* 30px chunks */
+		@media screen and (min-width: 800px) and (min-height: 800px)  { #tetris { font-size: 2.00em; width: 750px; } #menu { width: 350px; height: 700px; } #upcoming { width: 175px; height: 175px; } #canvas { width: 350px; height: 700px; } } /* 35px chunks */
+		@media screen and (min-width: 900px) and (min-height: 900px)  { #tetris { font-size: 2.25em; width: 850px; } #menu { width: 400px; height: 800px; } #upcoming { width: 200px; height: 200px; } #canvas { width: 400px; height: 800px; } } /* 40px chunks */
+	</style>
+</head>
+<body onblur="showAlert()" data-new-gr-c-s-check-loaded="14.1112.0" data-gr-ext-installed="">
+  <div id="tetris">
+    <div id="menu">
+      <p id="start"><a href="javascript:play();"><strong>Click Here To START</strong></a></p>
+      <p><canvas id="upcoming" width="125" height="125"></canvas></p>
+      <p>score <span id="score">00000</span></p>
+      <p>rows <span id="rows">0</span></p>
+    <div id="stats" style="cursor: pointer; width: 80px; opacity: 0.9; z-index: 10001;"><div style="background-color: rgb(8, 8, 24); padding: 2px 0px 3px;"><div style="font-family: Helvetica, Arial, sans-serif; text-align: left; font-size: 9px; color: rgb(0, 255, 255); margin: 0px 0px 1px 3px;"><span style="font-weight:bold">60 FPS</span> (53-60)</div><canvas width="74" height="30" style="display: block; margin-left: 3px;"></canvas></div><div style="background-color: rgb(8, 24, 8); padding: 2px 0px 3px; display: none;"><div style="font-family: Helvetica, Arial, sans-serif; text-align: left; font-size: 9px; color: rgb(0, 255, 0); margin: 0px 0px 1px 3px;"><span style="font-weight:bold">11 MS</span> (0-165)</div><canvas width="74" height="30" style="display: block; margin-left: 3px;"></canvas></div><div style="background-color: rgb(24, 8, 13); padding: 2px 0px 3px; display: none;"><div style="font-family: Helvetica, Arial, sans-serif; text-align: left; font-size: 9px; color: rgb(255, 0, 128); margin: 0px 0px 1px 3px;"><span style="font-weight:bold">22 MB</span> (21-22)</div><canvas width="74" height="30" style="display: block; margin-left: 3px;"></canvas></div></div><div id="stats" style="cursor: pointer; width: 80px; opacity: 0.9; z-index: 10001;"><div style="background-color: rgb(8, 8, 24); padding: 2px 0px 3px;"><div style="font-family: Helvetica, Arial, sans-serif; text-align: left; font-size: 9px; color: rgb(0, 255, 255); margin: 0px 0px 1px 3px;"><span style="font-weight:bold">20 FPS</span> (20-22)</div><canvas width="74" height="30" style="display: block; margin-left: 3px;"></canvas></div><div style="background-color: rgb(8, 24, 8); padding: 2px 0px 3px; display: none;"><div style="font-family: Helvetica, Arial, sans-serif; text-align: left; font-size: 9px; color: rgb(0, 255, 0); margin: 0px 0px 1px 3px;"><span style="font-weight:bold">52 MS</span> (15-59)</div><canvas width="74" height="30" style="display: block; margin-left: 3px;"></canvas></div><div style="background-color: rgb(24, 8, 13); padding: 2px 0px 3px; display: none;"><div style="font-family: Helvetica, Arial, sans-serif; text-align: left; font-size: 9px; color: rgb(255, 0, 128); margin: 0px 0px 1px 3px;"><span style="font-weight:bold">10 MB</span> (10-10)</div><canvas width="74" height="30" style="display: block; margin-left: 3px;"></canvas></div></div></div>
+    <canvas id="canvas" width="250" height="500">
+      Canvas not supported!
+    </canvas>
+  </div>
+
+  <script src="./tetris_files/stats.js.download"></script>
+
+  
+  <div id="focusLost" onclick="hideAlert()" style="display: table-cell;">
+	Click Here to Continue
+  </div>
+
+
+
+<grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+  div.grammarly-desktop-integration {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select:none;
+    user-select:none;
+  }
+
+  div.grammarly-desktop-integration:before {
+    content: attr(data-content);
+  }
+</style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></body></html>

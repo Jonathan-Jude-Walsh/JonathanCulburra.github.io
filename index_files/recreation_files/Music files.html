@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Table</title>
+    <link rel="stylesheet" type="text/css" href="Music/music files.css">
+    <style>
+        table {
+            background-color: black;
+            color: white;
+        }
+
+        th {
+            background-color: black;
+            color: white;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        a {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr class="header" id="theader">
+                <th id="nameColumnHeader" tabindex="0" role="button">Name</th>
+                <th id="sizeColumnHeader" class="detailsColumn" tabindex="0" role="button">
+                    Size
+                </th>
+                <th id="dateColumnHeader" class="detailsColumn" tabindex="0" role="button">
+                    Date Modified
+                </th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            <tr>
+                <td data-value="box square face fella.wav">
+                    <a class="icon file" draggable="true" href="Music/box square face fella.wav.torrent">box square face fella.wav</a>
+                </td>
+                <td class="detailsColumn" data-value="1610088854">1.5 GB</td>
+                <td class="detailsColumn" data-value="1698882482">11/2/23, 10:48:02 AM</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
