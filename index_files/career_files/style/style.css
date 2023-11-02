@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 html,
 body {
    background: #cde9e2;
@@ -145,3 +146,152 @@ a:hover::before {
       font-size: 0.7em;
    }
 }
+=======
+html,
+body {
+   background: #cde9e2;
+   height: 100%;
+   padding: 0;
+   margin: 0;
+   --turquoise: rgb(43, 148, 180);
+   --dark-turquoise: rgb(4, 42, 53);
+   font-family: sans-serif;
+}
+
+body {
+   padding-left: 2rem;
+   padding-right: 2rem;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+a {
+   text-decoration: none;
+   position: relative;
+   color: black;
+   transition: color 0.3s;
+   font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+p,
+h5 { /* Updated to target <h5> elements */
+   font-family: sans-serif, "Times New Roman", Times, serif; /* Use "Georgia" font for <h5> */
+}
+
+h2 { /* Updated to target <h2> elements */
+   font-family: "Times New Roman", Times, serif; /* Use "New Times Roman" font for <h2> */
+}
+
+h1 {
+   font-size: 2em;
+   text-align: center;
+}
+
+.navbar {
+   display: flex;
+   gap: 1rem;
+   padding-bottom: 4rem;
+}
+
+a.thispage {
+   color: var(--dark-turquoise);
+}
+
+a::before {
+   content: "";
+   position: absolute;
+   background: currentColor;
+   left: 0;
+   right: 0;
+   bottom: -10px;
+   height: 1.5px;
+   opacity: 0;
+   transition: opacity 0.3s;
+}
+
+a:hover {
+   color: var(--turquoise);
+   filter: drop-shadow(0 0 0.75rem var(--turquoise));
+}
+
+a.thispage::before,
+a:hover::before {
+   opacity: 1;
+}
+
+.invisible {
+   opacity: 0;
+}
+
+.intangible {
+   display: none;
+}
+
+#pfp {
+   border-radius: 25%;
+}
+
+.infosection {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.infosection img {
+   margin: 0;
+   margin-bottom: 1rem;
+}
+
+.infosection p {
+   width: 100%;
+   text-align: center;
+   margin: 0;
+   margin-bottom: 0.5rem;
+   font-size: 1em;
+}
+
+.infosection h2 {
+   font-size: 1.4em;
+   margin: 0;
+   margin-bottom: 1rem;
+   text-align: center;
+}
+
+.link {
+   font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.row {
+   display: flex;
+   width: clamp(2rem, 85%, 60rem);
+   justify-content: space-around;
+   margin-bottom: 3rem;
+   flex-wrap: wrap;
+   row-gap: 2rem;
+}
+
+.row > * {
+   width: 28%;
+   min-width: 10rem;
+}
+
+.row a img {
+   width: 100%;
+}
+
+.spacer {
+   height: 3rem;
+   opacity: 0;
+}
+
+@media only screen and (min-width: 1000px) {
+   body {
+      font-size: 2rem;
+   }
+
+   .infosection p {
+      font-size: 0.7em;
+   }
+}
+>>>>>>> 19b92f1c85b7a78069a73a4f7fbf019872bfc4f7
