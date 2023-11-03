@@ -25,9 +25,13 @@ a {
    font-family: Georgia, "Times New Roman", Times, serif;
 }
 
-p,
+p {
+font-size: 0.75em;
+}
+
 h5 { /* Updated to target <h5> elements */
    font-family: sans-serif, "Times New Roman", Times, serif; /* Use "Georgia" font for <h5> */
+   font-size: 1.1em;
 }
 
 h2 { /* Updated to target <h2> elements */
@@ -42,8 +46,9 @@ h1 {
 .navbar {
    display: flex;
    gap: 1rem;
-   padding-bottom: 4rem;
+   padding-bottom: 0rem;
 }
+
 
 a.thispage {
    color: var(--dark-turquoise);
@@ -70,6 +75,7 @@ a.thispage::before,
 a:hover::before {
    opacity: 1;
 }
+
 
 .invisible {
    opacity: 0;
