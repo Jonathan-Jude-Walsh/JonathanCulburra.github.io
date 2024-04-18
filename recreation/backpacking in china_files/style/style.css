@@ -20,7 +20,7 @@ body {
 a {
    text-decoration: none;
    position: relative;
-   color: black;
+   color: rgb(0, 0, 255);
    transition: color 0.3s;
    font-family: Georgia, "Times New Roman", Times, serif;
 }
