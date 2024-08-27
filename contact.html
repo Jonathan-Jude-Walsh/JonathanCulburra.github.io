@@ -14,6 +14,13 @@
     <title>Contact</title>
     <link rel="stylesheet" href="about/style/style.css">
     <link rel="icon" href="https://jonowalsh.net/index/template_files/images/jonowalsh.netlogo.svg">
+    <style type="text/css">
+      .e-mail:before {
+          content: attr(data-website) "\0040" attr(data-user);
+          unicode-bidi: bidi-override;
+          direction: rtl;
+      }
+  </style>
 </head>
 
 <body>
@@ -28,34 +35,10 @@
     </div>
 
   
-  <div id="result"></div>
-  <form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
-    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-    <input type="text" name="name" required>
-    <input type="email" name="email" value="contact@jonowalsh.net" required>
-    <textarea name="message" required></textarea>
+    <title>Protect e-mail with only css</title>
     
-    <div class="h-captcha" data-sitekey="e942f35c-d8d8-4890-981a-4e0e8ca6923c" data-captcha="true"></div>
-    
-    <button type="submit">Submit Form</button>
-</form>
 
-<script src="https://web3forms.com/client/script.js" async defer></script>
-
-<script>
-const form = document.getElementById('contactForm');
-
-form.addEventListener('submit', function(e) {
-
-    const hCaptcha = form.querySelector('textarea[name=h-captcha-response]').value;
-
-    if (!hCaptcha) {
-        e.preventDefault();
-        alert("Please fill out the captcha field");
-        return;
-    }
-});
-</script>
+<span class="e-mail" data-user="tcatnoc" data-website="ten.hslawonoj"></span>
 
 
 
