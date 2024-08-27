@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+    <script>
+        function onClick(e) {
+          e.preventDefault();
+          grecaptcha.enterprise.ready(async () => {
+            const token = await grecaptcha.enterprise.execute('6LdDU-QpAAAAAADa8JaHYFIZ2NDOo9isqugpb--Y', {action: 'LOGIN'});
+          });
+        }
+      </script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,15 +27,47 @@
         <a href="contact.html"class="thispage">CONTACT</a> 
     </div>
 
-   <form action="/submit" method="POST">
-    <input type="email" name="email" value="contact@jonowalsh.net" readonly />
-    <div class="h-captcha" data-sitekey="e942f35c-d8d8-4890-981a-4e0e8ca6923c"></div>
-    <button type="submit">Submit</button>
-</form>
-
-<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
-
   
+  <div id="result"></div>
+
+  <script>
+      document.getElementById('email-form').addEventListener('submit', function(e) {
+          e.preventDefault();
+
+          // Get the hCaptcha response token
+          const hCaptchaResponse = document.querySelector('[name=h-captcha-response]').value;
+
+          if (!hCaptchaResponse) {
+              document.getElementById('result').innerText = "Please complete the hCaptcha.";
+              return;
+          }
+
+          // Send the token to a webhook or external service for verification
+          fetch('https://your-webhook-url', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                  email: 'contact@jonowalsh.net',
+                  h_captcha_response: hCaptchaResponse
+              })
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  document.getElementById('result').innerText = "hCaptcha passed, email hidden.";
+              } else {
+                  document.getElementById('result').innerText = "hCaptcha failed.";
+              }
+          })
+          .catch(error => {
+              document.getElementById('result').innerText = "An error occurred.";
+              console.error('Error:', error);
+          });
+      });
+  </script>
+</body>
 
 </body>
 
