@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    <script>
+        function onClick(e) {
+          e.preventDefault();
+          grecaptcha.enterprise.ready(async () => {
+            const token = await grecaptcha.enterprise.execute('6LdDU-QpAAAAAADa8JaHYFIZ2NDOo9isqugpb--Y', {action: 'LOGIN'});
+          });
+        }
+      </script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,28 +27,16 @@
         <a href="contact.html"class="thispage">CONTACT</a> 
     </div>
 
-    <div>
-        <h2>Contact (DRAFT)</h2>
-        <h5>Title description</h5>
-        <p>I'd prefer to communicate through smoke signals.<div>
+    <head>
+      <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+  </head>
+  <form action="" method="POST">
+    <div class="h-captcha" data-sitekey="e942f35c-d8d8-4890-981a-4e0e8ca6923c"></div>
+    <br />
+    <input type="submit" value="Reveal Email" />
+</form>
+  
 
-        </div>
-    </div> 
-</div>             _.====.._
-</div>           ,:._       ~-_
-</div>               `\        ~-_
-</div>                 | _  _  |  `.
-</div>               ,/ /_)/ | |    ~-_
-</div>      -..__..-''  \_ \_\ `_      ~~--..__...----...
-        </p>
-      </div>
-     
-
-  <!-- I am the captain now. -->
-
-    <div class="spacer">bruh</div>
-
-    <script src="contact/js/script.js"></script>
 </body>
 
 </html>
