@@ -31,14 +31,14 @@ h2 {
 }
 
 h1 {
-   font-size: 2em;
+   font-size: 1.25em;
    text-align: center;
 }
 
 .navbar {
    display: flex;
    gap: 1rem;
-   padding-bottom: 4rem;
+   padding-bottom: 1rem;
 }
 
 a.thispage {
@@ -51,7 +51,7 @@ a::before {
    background: currentColor;
    left: 0;
    right: 0;
-   bottom: -10px;
+   bottom: 1px;
    height: 1.5px;
    opacity: 0;
    transition: opacity 0.3s;
@@ -67,48 +67,6 @@ a:hover::before {
    opacity: 1;
 }
 
-.RELIGIONALERT {
-   background: var(--dark-turquoise);
-   color: white;
-   position: fixed;
-   bottom: 0;
-   left: 0;
-   right: 0;
-   padding: 2rem;
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   justify-content: space-between;
-   gap: 3rem;
-   transition: opacity 0.5s;
-}
-
-.RELIGIONALERT h2 {
-   margin-top: 0;
-}
-
-.RELIGIONALERT button {
-   font-size: 1em;
-   padding: 0.8rem 1.5rem;
-   border-radius: 4px;
-   border: none;
-   color: white;
-   background: var(--turquoise);
-   transition: color 0.3s, background-color 0.3s;
-}
-
-.RELIGIONALERT button:hover {
-   background: white;
-   color: var(--turquoise);
-}
-
-.invisible {
-   opacity: 0;
-}
-
-.intangible {
-   display: none;
-}
 
 #pfp {
    border-radius: 25%;
@@ -129,14 +87,14 @@ a:hover::before {
    width: 100%;
    text-align: center;
    margin: 0;
-   margin-bottom: 0.5rem;
+   margin-bottom: 0rem;
    font-size: 1em;
 }
 
 .infosection h2 {
    font-size: 1.4em;
    margin: 0;
-   margin-bottom: 1rem;
+   margin-bottom: 0rem;
    text-align: center;
 }
 
@@ -148,7 +106,7 @@ a:hover::before {
    display: flex;
    width: clamp(2rem, 85%, 60rem);
    justify-content: space-around;
-   margin-bottom: 3rem;
+   margin-bottom: 0rem;
    flex-wrap: wrap;
    row-gap: 2rem;
 }

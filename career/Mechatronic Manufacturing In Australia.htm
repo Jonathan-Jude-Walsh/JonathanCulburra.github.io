@@ -26,8 +26,8 @@ href="Mechatronic%20Manufacturing%20In%20Australia_files/filelist.xml">
  var c_rgszSh=new Array(c_lTabs);
  c_rgszSh[0] = "Companies";
  c_rgszSh[1] = "Process Definitions";
- c_rgszSh[2] = "Industry Categories";
- c_rgszSh[3] = "Sheet1";
+ c_rgszSh[2] = "Sheet1";
+ c_rgszSh[3] = "Industry Categories";
 
 
 
@@ -57,7 +57,7 @@ function fnGetIEVer()
 function fnBuildFrameset()
 {
  var szHTML="<frameset rows=\"*,18\" border=0 width=0 frameborder=no framespacing=0>"+
-  "<frame src=\""+document.all.item("shLink")[0].href+"\" name=\"frSheet\" noresize>"+
+  "<frame src=\""+document.all.item("shLink")[3].href+"\" name=\"frSheet\" noresize>"+
   "<frameset cols=\"54,*\" border=0 width=0 frameborder=no framespacing=0>"+
   "<frame src=\"\" name=\"frScroll\" marginwidth=0 marginheight=0 scrolling=no>"+
   "<frame src=\"\" name=\"frTabs\" marginwidth=0 marginheight=0 scrolling=no>"+
@@ -315,22 +315,23 @@ function fnSetActiveSheet(iSh)
      HRef="Mechatronic%20Manufacturing%20In%20Australia_files/sheet002.htm"/>
    </x:ExcelWorksheet>
    <x:ExcelWorksheet>
-    <x:Name>Industry Categories</x:Name>
+    <x:Name>Sheet1</x:Name>
     <x:WorksheetSource
      HRef="Mechatronic%20Manufacturing%20In%20Australia_files/sheet003.htm"/>
    </x:ExcelWorksheet>
    <x:ExcelWorksheet>
-    <x:Name>Sheet1</x:Name>
+    <x:Name>Industry Categories</x:Name>
     <x:WorksheetSource
      HRef="Mechatronic%20Manufacturing%20In%20Australia_files/sheet004.htm"/>
    </x:ExcelWorksheet>
   </x:ExcelWorksheets>
   <x:Stylesheet
    HRef="Mechatronic%20Manufacturing%20In%20Australia_files/stylesheet.css"/>
-  <x:WindowHeight>5556</x:WindowHeight>
-  <x:WindowWidth>17256</x:WindowWidth>
+  <x:WindowHeight>8976</x:WindowHeight>
+  <x:WindowWidth>23040</x:WindowWidth>
   <x:WindowTopX>32767</x:WindowTopX>
   <x:WindowTopY>32767</x:WindowTopY>
+  <x:ActiveSheet>3</x:ActiveSheet>
   <x:ProtectStructure>False</x:ProtectStructure>
   <x:ProtectWindows>False</x:ProtectWindows>
  </x:ExcelWorkbook>
@@ -338,7 +339,7 @@ function fnSetActiveSheet(iSh)
 </head>
 
 <frameset rows="*,39" border=0 width=0 frameborder=no framespacing=0>
- <frame src="Mechatronic%20Manufacturing%20In%20Australia_files/sheet001.htm" name="frSheet">
+ <frame src="Mechatronic%20Manufacturing%20In%20Australia_files/sheet004.htm" name="frSheet">
  <frame src="Mechatronic%20Manufacturing%20In%20Australia_files/tabstrip.htm" name="frTabs" marginwidth=0 marginheight=0>
  <noframes>
   <body>
