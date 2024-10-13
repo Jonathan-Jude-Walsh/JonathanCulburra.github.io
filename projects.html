@@ -1,151 +1,331 @@
-<!DOCTYPE html>
-<html lang="en">
 
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects</title>
     <link rel="stylesheet" href="projects/style/style.css">
     <link rel="icon" href="https://jonowalsh.net/index/template_files/images/jonowalsh.netlogo.svg">
+
+	<!-- Demo styling -->
+	<link href="projects/style/jq.css" rel="stylesheet">
+
+	<!-- jQuery: required (tablesorter works with jQuery 1.2.3+) -->
+	<script src="projects/js/jquery-1.2.6.min.js"></script>
+
+	<!-- Pick a theme, load the plugin & initialize plugin -->
+	<link href="projects/style/theme.default.min.css" rel="stylesheet">
+	<script src="projects/js/jquery.tablesorter.min.js"></script>
+	<script src="projects/js/jquery.tablesorter.widgets.min.js"></script>
+	<script>
+	
+	$(function(){
+		$('table').tablesorter({
+			widgets        : ['zebra', 'columns'],
+			usNumberFormat : false,
+			sortReset      : true,
+			sortRestart    : true
+		});
+	});
+	</script>
+	<script>
+		function calculateDuration() {
+			const rows = document.querySelectorAll('#projectTable tr');
+			const today = new Date();
+	
+			rows.forEach(row => {
+				const startDateCell = row.cells[3].innerText;
+				const endDateCell = row.cells[4].innerText;
+				let duration = 0;
+	
+				const startDate = new Date(startDateCell.split('/').reverse().join('-')); // Convert to YYYY-MM-DD format
+				let endDate;
+	
+				if (endDateCell.toLowerCase() === 'ongoing' || endDateCell.toLowerCase() === 'paused') {
+					endDate = today; // If ongoing or paused, use today's date
+				} else if (endDateCell.toLowerCase() === 'upcoming') {
+					endDate = null; // Upcoming projects should not have a duration
+				} else {
+					endDate = new Date(endDateCell.split('/').reverse().join('-')); // Convert to YYYY-MM-DD format
+				}
+	
+				// Calculate the duration only if both dates are valid
+				if (startDate && endDate) {
+					if (endDate >= startDate) {
+						duration = Math.floor((endDate - startDate) / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
+					} else {
+						duration = 0; // If the end date is before the start date, set duration to 0
+					}
+				}
+	
+				// Store the duration in a data attribute and display it in the cell
+				row.cells[5].innerText = (endDateCell.toLowerCase() === 'upcoming') ? '' : duration;
+				row.cells[5].setAttribute('data-duration', duration); // Set a data attribute for sorting
+			});
+		}
+	
+		// Call the function to calculate duration when the page loads
+		window.onload = calculateDuration;
+	</script>
+	
+
 </head>
 <body>
-    <h1>Jonathan Walsh's Portfolio</h1>
+<div class="demo">
+	<h1>Jonathan Walsh's Portfolio</h1>
 
-    <div class="navbar">
-        <a href="index.html" >HOME</a>
-        <br>
-        <a href="about.html">ABOUT</a>
-        <br>
-        <a href="contact.html">CONTACT</a> 
+    <div class=".navbar">
+        <a href="https://jonowalsh.net/index.html">HOME </a>
+        <a href="https://jonowalsh.net/about.html">ABOUT </a>
+        <a href="https://jonowalsh.net/contact.html">CONTACT</a> 
     </div>
-    <div><h2>Projects</h2></div>
-    <div><p>My quaquaversal pastime.</p></div>
-    <div class="container">
-        <div class="right-box">
-         <h5>STEM</h5>
-         <p>STEM is fun! Have a gander at my CAD and Code. It mainly features my extension projects related to my university engineering coursework, focusing on Autodesk Inventor, MATLAB, and C++.
-         </p>
-         <a class="button" href="projects/stem.html">Enter the Portal</a>
-     
-        
-         </div>
-         <div class="left-box">
-             <img src="projects/images/cad, cae and code.svg" alt="cad, cae and code.svg">
-         </div>
-     </div>
-    <div><h5>Video</h5></div>
-    <div class="row">
-        <a href="https://www.youtube.com/channel/UCevkmw9JUntiNRJM8dj2k0w">
-            <img src="projects/images/Jonathan Youtube.jpg" alt="Jonathan Walsh YouTube" id="YT">
-        </a>
-        <p>I create content that holds personal meaning to me. Click on the image to see more.</p>
-        <a href="https://www.youtube.com/@BurraBoys">
-            <img src="projects/images/Burraboys Youtube.jpg" alt="BurraBoys YouTube" id="YT">
-        </a>
-    </div>
-    <div class="centre-text">
-        <p>If music decorates time and visuals decorate space, why not combine both? In the past, I've collaborated with friends to create videos where we shared the filming and editing tasks. Nowadays, I spontaneously create YouTube videos and occasionally livestream.</p>
+    <div><h1>Projects</h1></div>
+	<p>Each project reflects my commitment to innovation and creativity, underscoring my ability to work both individually and collaboratively. Feel free to click on the links to the projects below and learn about my skills and experiences. If you have any questions or would like to connect,  <a href="https://jonowalsh.net/contact.html">don't hesitate to reach out!</a><br>
+	</p>
+	<div><h3>Technical</h3></div>
+	<table class="tablesorter">
+		<tbody id="projectTable">
+			<thead>
+				<tr>
+					<th>Discipline</th>
+					<th>Skill</th>
+					<th>Project</th>
+					<th>Date Started</th>
+					<th>Date Completed</th>
+					<th>Duration (Days)</th>
+					<th>Involvement</th>
+				</tr>
+			</thead>
+			<tbody id="projectTable">
+				<tr>
+					<td>Programming</td>
+					<td>C++</td>
+					<td>CSCI290</td>
+					<td>20/02/2024</td>
+					<td>14/07/2024</td>
+					<td></td>
+					<td>Individual</td>
+				</tr>
+				<tr>
+					<td>Programming</td>
+					<td>Collaborative</td>
+					<td>CSCI291</td>
+					<td>20/02/2024</td>
+					<td>14/07/2024</td>
+					<td></td>
+					<td>Individual</td>
+				</tr>
+				<tr>
+					<td>Programming</td>
+					<td>MATLAB</td>
+					<td>ENGG100</td>
+					<td>24/07/2024</td>
+					<td>27/10/2024</td>
+					<td></td>
+					<td>Individual</td>
+				</tr>
+				<tr>
+					<td>CAD/CAE</td>
+					<td>Autodesk Inventor</td>
+					<td>ENGG105</td>
+					<td>27/02/2023</td>
+					<td>28/04/2023</td>
+					<td></td>
+					<td>Collaborative</td>
+				</tr>
+				<tr>
+					<td>CAD/CAE</td>
+					<td></td>
+					<td>MECH215</td>
+					<td>22/07/2024</td>
+					<td>14/11/2024</td>
+					<td></td>
+					<td>Collaborative</td>
+				</tr>
+				<tr>
+					<td>CAD/CAE</td>
+					<td>Autodesk Fusion 360</td>
+					<td>Upcoming</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>Individual</td>
+				</tr>
+				<tr>
+					<td>CAD/CAE</td>
+					<td>3D Printing</td>
+					<td>Toyota MR2</td>
+					<td>3/05/2024</td>
+					<td>14/05/2024</td>
+					<td></td>
+					<td>Individual</td>
+				</tr>
+				<tr>
+					<td>CAD/CAE</td>
+					<td>Ansys</td>
+					<td>MECH215</td>
+					<td>22/07/2024</td>
+					<td>14/11/2024</td>
+					<td></td>
+					<td>Collaborative</td>
+				</tr>
+				<tr>
+					<td>Embedded Systems</td>
+					<td>Arduino</td>
+					<td>Mechatronic Society</td>
+					<td>27/02/2023</td>
+					<td>Ongoing</td>
+					<td></td>
+					<td>Collaborative</td>
+				</tr>
+				<tr>
+					<td>Embedded Systems</td>
+					<td>ESP32</td>
+					<td>Mechatronic Society</td>
+					<td>22/07/2024</td>
+					<td>Ongoing</td>
+					<td></td>
+					<td>Individual</td>
+				</tr>
+				<tr>
+					<td>Embedded Systems</td>
+					<td>Raspberry Pi</td>
+					<td>Surf Cam</td>
+					<td>17/11/2023</td>
+					<td>6/12/2023</td>
+					<td></td>
+					<td>Individual</td>
+				</tr>
+			</tbody>
+		</table>
+	</table>
+	<div><h3>Creative</h3></div>
+	<table class="tablesorter">
+		<thead>
+			<tr>
+				<th>Discipline</th>
+				<th>Skill</th>
+				<th>Project</th>
+				<th>Date Started</th>
+				<th>Date Completed</th>
+				<th>Duration (Days)</th>
+				<th>Involvement</th>
+			</tr>
+		</thead>
+		<tbody id="projectTable">
+			<tr>
+				<td>Games</td>
+				<td>Web</td>
+				<td><a href="projects/tetris.html">Tetris</a></td>
+				<td>3/11/2023</td>
+				<td>3/11/2023</td>
+				<td></td>
+				<td>Individual</td>
+			</tr>
+			<tr>
+				<td>Games</td>
+				<td>Web</td>
+				<td><a href="projects/Lunar Lander.html">Lunar Lander</a></td>
+				<td>15/11/2023</td>
+				<td>17/11/2023</td>
+				<td></td>
+				<td>Individual</td>
+			</tr>
+			<tr>
+				<td>Games</td>
+				<td>3D Modelling</td>
+				<td><a href="projects/Mario Kart 55C.html">"Mario Kart Wii track of 55C</a></td>
+				<td>20/06/2024</td>
+				<td>Ongoing</td>
+				<td></td>
+				<td>Individual</td>
+			</tr>
+			<tr>
+				<td>Video</td>
+				<td>Personal YouTube</td>
+				<td><a href="projects/Backpacking in China.html">Backpacking in China</a></td>
+				<td>8/08/2022</td>
+				<td>1/10/2023</td>
+				<td></td>
+				<td>Collaborative</td>
+			</tr>
+			<tr>
+				<td>Video</td>
+				<td>Burraboys</td>
+				<td><a href="https://www.youtube.com/@BurraBoys">YouTube Channel</a></td>
+				<td>24/08/2018</td>
+				<td>18/08/2021</td>
+				<td></td>
+				<td>Collaborative</td>
+			</tr>
+			<tr>
+				<td>Music</td>
+				<td>Playing Cello</td>
+				<td>Church</td>
+				<td>6/06/2021</td>
+				<td>Ongoing</td>
+				<td></td>
+				<td>Collaborative</td>
+			</tr>
+			<tr>
+				<td>Music</td>
+				<td>Playing Cello</td>
+				<td>Not Church</td>
+				<td>20/01/2014</td>
+				<td>Ongoing</td>
+				<td></td>
+				<td>Individual</td>
+			</tr>
+			<tr>
+				<td>Music</td>
+				<td>Listening</td>
+				<td><a href="https://open.spotify.com/user/w0ohji05zqagt7lc0i8ofkr8i?si=0a3ed5e03a844f6f&nd=1">Spotify</a></td>
+				<td>5/06/2019</td>
+				<td>Ongoing</td>
+				<td></td>
+				<td>Individual</td>
+			</tr>
+			<tr>
+				<td>Music</td>
+				<td>Listening</td>
+				<td>Collection of albums</td>
+				<td>Upcoming</td>
+				<td></td>
+				<td></td>
+				<td>Individual</td>
+			</tr>
+			<tr>
+				<td>Music</td>
+				<td>Writing</td>
+				<td><a href="https://musescore.com/user/31067393">Musescore</a></td>
+				<td>3/01/2021</td>
+				<td>Paused</td>
+				<td></td>
+				<td>Individual</td>
+			</tr>
+			<tr>
+				<td>Visual</td>
+				<td>SVG</td>
+				<td><a href="/projects/images/Self Portrait.svg">Self Portrait</a></td>
+				<td>17/11/2023</td>
+				<td>6/12/2023</td>
+				<td></td>
+				<td>Individual</td>
+			</tr>
+			<tr>
+				<td>Visual</td>
+				<td>SVG</td>
+				<td><a href="https://archive.org/download/my-grime-gross-australian-aesthetic">My Aesthetic</a></td>
+				<td>11/07/2024</td>
+				<td>12/09/2024</td>
+				<td></td>
+				<td>Individual</td>
+			</tr>
+		</tbody>
+	</table>
 
-        </div>
-    </div> 
-    <style>
-        .container {
-            display: flex; 
-        }
+	<p>This is a quick summary of my projects, which are continuously developed as I complete them and compile the documentation. Please stay tuned for more updates, and <a href="https://jonowalsh.net/contact.html">don't hesitate to reach out!</a></p>
 
-        .left-box {
-            flex: 1; 
-            padding: 20px;
-        }
-        .right-box {
-            flex: 1; 
-            padding: 20px;
-        }
-        .left-box img {
-            max-width: 100%;
-        }
-
-        .centre-text {
-            flex: 1; 
-            padding: 1em;   
-        }
-        .right-box .button:last-child {
-            margin-right: 0;
-        }
-        .grid-container {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .grid-box {
-            flex: 0 0 calc(33.33% - 20px); 
-            padding: 20px;
-            text-align: center; 
-        }
-        .button {
-            display: inline-block;
-            margin-right: 10px;
-            padding: 10px 20px;
-            background-color: #6ab2ff;
-            color: #fff;
-            text-decoration: none;
-            border: none;}
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="left-box">
-            <img src="projects/images/Cello with pickup.png" alt="Cello with pickup.png">
-        </div>
-
-        <div class="right-box">
-            <h5>Music</h5>
-            <p>I started learning the cello in 2014 and have since joined the Shoalhaven Youth Orchestra, Riverina Summer School for Strings, and various church bands. I consider myself an intermediate cellist.</p>
-            <p>Here are some platforms</p>
-            <div class="row">
-                <a href="https://www.youtube.com/channel/UCevkmw9JUntiNRJM8dj2k0w"> 
-                    <img src="projects/images/YouTube_play_button_square.svg" alt="YouTube Logo" id="YT">
-                </a>
-                <a href="https://musescore.com/user/31067393">
-                    <img src="projects/images/musescore-mu-logo-transbg.svg" alt="Musescore Logo">
-                <a href="https://open.spotify.com/user/w0ohji05zqagt7lc0i8ofkr8i?si=0a3ed5e03a844f6f&nd=1">
-                    <img src="projects/images/Spotify_icon.svg" alt="Spotify Logo">
-                </a>
-            </div>
-            <p>Alternatively, you can directly access the files:</p>
-            <a class="button" href="projects/Music files.html">See Files</a>
-        </div>
-    </div>
-    <div class="grid-container">
-        <div class="grid-box">
-            <h5>Games</h5>
-            <p>See my collection of games you can play. I occasionally enjoy playing Tetris, Minecraft, and Goat Simulator.</p>
-            <a class="button" href="projects/games.html">Play Games</a>
-        </div>
-        <div class="grid-box">
-            <h5>Backpacking in China</h5>
-            <p>Daniel DeHaan and I traveled from Hong Kong to Beijing from June 27, 2023, to July 19, 2023. Click to watch the video.</p>
-            <a class="button" href="projects/backpacking in china.html">See Project</a>
-        </div>
-        <div class="grid-box">
-            <h5>Bitcoin</h5>
-            <p>I experimented with Bitcoin for a while. Please note that my forecasting tool should not be considered financial advice.</p>
-            <a class="button" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSCl1K0iluvgzHDsTVAYeB1zF6z7v-I9GQ33aJCIjgG9Eyq07ceGdwrTdfHCYr0l-r6i9chWn-mdsD3/pubchart?oid=1912773735&format=interactive">See Chart</a>
-        </div>
-    </div>
-    <div class="centre-text">
-        <p>The outside world is pretty cool too. Surf Life Saving is a worthwhile commitment alongside freediving, body surfing, bushwalking, and urban exploration. Above all, I find it important to find pleasure in purpose rather than seeking purpose in pleasure. Check out my "About" section if you want to know more about me.</p>
-        <img src="projects/images/Self Portrait.svg" alt="Self Portrait" style="width: 100%;" />
-    </div>
-    
-</body>   
-</html>
-
-
-  <!-- I am the captain now. -->
-
-    <div class="spacer">bruh</div>
-
-    <script src="projects/js/script.js"></script>
-
-</html>
+</div>
+</body></html>
