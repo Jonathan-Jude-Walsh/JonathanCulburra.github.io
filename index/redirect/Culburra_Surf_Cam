@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0;url=https://www.youtube.com/watch?v=dhd8pLtsWCI">
+    <title>Redirecting...</title>
+</head>
+<body>
+    <p>Redirecting to Culburra Surf Cam</p><br>
+    <p>Redirecting to <a href="https://www.youtube.com/watch?v=dhd8pLtsWCI">https://www.youtube.com/watch?v=dhd8pLtsWCI</a>...</p>
+    <script>
+        window.location.href = "https://www.youtube.com/watch?v=dhd8pLtsWCI";
+    </script>
+</body>
+</html>
