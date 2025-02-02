@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>Redirecting...</title>
     <script>
-        async function redirectToFeaturedVideo() {
-            const channelId = "UCevkmw9JUntiNRJM8dj2k0w"; // Replace with your Channel ID
-            const apiKey = "AIzaSyBprr7CAHXFLdTG8UMzsl7uCOFX7c3zLeM"; // Replace this with your API key
+        async function redirectToLatestVideo() {
+            const channelId = "UCevkmw9JUntiNRJM8dj2k0w"; // Your Channel ID
+            const apiKey = "AIzaSyBprr7CAHXFLdTG8UMzsl7uCOFX7c3zLeM"; // Your API Key
             const url = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&order=date&maxResults=1&type=video`;
 
             try {
@@ -14,19 +14,26 @@
                 const data = await response.json();
                 if (data.items && data.items.length > 0) {
                     const videoId = data.items[0].id.videoId;
-                    window.location.href = `https://www.youtube.com/watch?v=${videoId}`;
+                    const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
+
+                    // Wait 5 seconds before redirecting
+                    setTimeout(() => {
+                        window.location.href = videoUrl;
+                    }, 5000);
                 } else {
-                    console.error("No featured video found.");
+                    console.error("No video found.");
+                    document.body.innerHTML = "<p>Could not find the latest video.</p>";
                 }
             } catch (error) {
-                console.error("Error fetching featured video:", error);
+                console.error("Error fetching video:", error);
+                document.body.innerHTML = "<p>Error fetching video. Check console for details.</p>";
             }
         }
 
-        window.onload = redirectToFeaturedVideo;
+        window.onload = redirectToLatestVideo;
     </script>
 </head>
 <body>
-    <p>Redirecting to the featured video...</p>
+    <p>Redirecting to the latest video in 5 seconds...</p>
 </body>
 </html>
